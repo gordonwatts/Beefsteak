@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="BeefsteakWindows.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BeefsteakWindows"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="TaskTemplate">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Title}"/>
+                <TextBlock Text="{Binding NumberToDo}"/>
+                <TextBlock Text="{Binding NumberDone}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="151*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Grid.ColumnSpan="1" Grid.Column="0">
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="Create" Content="Create" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Create_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <controls:AdaptiveGridView x:Name="ListOfItems" Grid.Column="1" Grid.ColumnSpan="1"
+                                   OneRowModeEnabled="False"
+                                   ItemHeight="200"
+                                   DesiredWidth="200"
+                                   SelectionMode="Single"
+                                   IsItemClickEnabled="True"
+                                   ItemsSource="{Binding Tasks}"
+                                   ItemTemplate="{StaticResource TaskTemplate}"/>
+    </Grid>
+</Page>
